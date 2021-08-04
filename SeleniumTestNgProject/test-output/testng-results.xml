@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[[[ChromeDriver: chrome on WINDOWS (8be6a6243d20ab1aa244f277db1ecbcf)] -> id: logout] is displayed.]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2021-08-04T15:42:51 IST" name="Execution Suite" finished-at="2021-08-04T15:43:07 IST" duration-ms="15907">
+    <groups>
+    </groups>
+    <test started-at="2021-08-04T15:42:51 IST" name="Test Execution" finished-at="2021-08-04T15:43:07 IST" duration-ms="15907">
+      <class name="Tests.LoginTests">
+        <test-method is-config="true" signature="initializeDriver()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:42:51 IST" name="initializeDriver" finished-at="2021-08-04T15:42:55 IST" duration-ms="4130" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializeDriver -->
+        <test-method signature="verifyFieldsPresent()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:42:55 IST" name="verifyFieldsPresent" finished-at="2021-08-04T15:42:56 IST" duration-ms="567" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFieldsPresent -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:42:56 IST" name="quitDriver" finished-at="2021-08-04T15:42:57 IST" duration-ms="997" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+        <test-method is-config="true" signature="initializeDriver()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:42:57 IST" name="initializeDriver" finished-at="2021-08-04T15:42:59 IST" duration-ms="2259" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializeDriver -->
+        <test-method signature="verifySuccessfulLogin()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:42:59 IST" name="verifySuccessfulLogin" finished-at="2021-08-04T15:43:03 IST" duration-ms="3828" status="PASS">
+          <reporter-output>
+            <line>
+              <![CDATA[[[ChromeDriver: chrome on WINDOWS (8be6a6243d20ab1aa244f277db1ecbcf)] -> id: logout] is displayed.]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- verifySuccessfulLogin -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:43:03 IST" name="quitDriver" finished-at="2021-08-04T15:43:04 IST" duration-ms="940" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+        <test-method is-config="true" signature="initializeDriver()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:43:04 IST" name="initializeDriver" finished-at="2021-08-04T15:43:06 IST" duration-ms="2215" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initializeDriver -->
+        <test-method signature="verifyUnsuccessfulLogin()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:43:06 IST" name="verifyUnsuccessfulLogin" finished-at="2021-08-04T15:43:06 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyUnsuccessfulLogin -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:Tests.LoginTests@1ca3b418]" started-at="2021-08-04T15:43:06 IST" name="quitDriver" finished-at="2021-08-04T15:43:07 IST" duration-ms="872" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitDriver -->
+      </class> <!-- Tests.LoginTests -->
+    </test> <!-- Test Execution -->
+  </suite> <!-- Execution Suite -->
+</testng-results>
