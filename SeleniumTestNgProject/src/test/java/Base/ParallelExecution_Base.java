@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import ParallelExecution_Pages.LoginPagePOM_Parallel;
 import Tests.LoginTests;
 import Utilities.Assertions;
 import Utilities.LoadConfigProperties;
@@ -18,21 +18,24 @@ import Utilities.Screenshots;
 import Utilities.TestDataMap;
 
 
-public class ParallelExeTestBaseThreadLocal {
+public class ParallelExecution_Base {
 	
 	protected LoadConfigProperties getConfigProp = new LoadConfigProperties();
-	public Assertions assertion;
-	public Screenshots screenshot;
 	public TestDataMap testDataMap = new TestDataMap();
 	public LoginTests loginTest;
 	public Map<String, String> dataMap;
 	
-	
+	//protected RemoteWebDriver driver = null;
 	protected InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
+	protected InheritableThreadLocal<LoginPagePOM_Parallel> loginPagePOM = new InheritableThreadLocal<LoginPagePOM_Parallel>();
+	protected InheritableThreadLocal<Assertions> assertion = new InheritableThreadLocal<Assertions>();
+	protected InheritableThreadLocal<Screenshots> screenshot = new InheritableThreadLocal<Screenshots>();
+	
+	
 	
 	@Parameters({ "browser" })
 	@BeforeMethod
-	public void setUpBrowser(String browser, ITestContext context) {
+	public void setUpBrowser(String browser) {
 		
 		if (browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", getConfigProp.getChromeDriverPath());
@@ -46,21 +49,20 @@ public class ParallelExeTestBaseThreadLocal {
 			options.setCapability("marionette", true);
 			driver.set(new FirefoxDriver());
 		}
-		context.setAttribute("WebDriver", driver.get());		
+				
 		driver.get().manage().window().maximize();
-		assertion = new Assertions(driver.get());
-		screenshot = new Screenshots(driver.get());
-		dataMap = testDataMap.createTestDataMap();
 		
+		loginPagePOM.set(new LoginPagePOM_Parallel(driver.get()));
+		dataMap = testDataMap.createTestDataMap();		
 	}
 	
-	public WebDriver getDriver() {
+	public WebDriver gettestDriver() {
 		return driver.get();
 	}
 	
 	@AfterMethod
 	public void tearDown() {
-		getDriver().quit();
+		gettestDriver().quit();
 	}
 	
 }

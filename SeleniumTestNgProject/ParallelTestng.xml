@@ -8,18 +8,18 @@
 	</listeners>
 
 
-	<test thread-count="3" name="Parallel Test Using Chrome">
+	<test thread-count="4" name="Parallel Test Using Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="Tests.ParallelTest_ThreadLocal" />
 		</classes>
 	</test> <!-- Test -->
 	
-	<test thread-count="3" name="Parallel Test Using Firefox">
-		<parameter name="browser" value="firefox" />
-		<classes>
-			<class name="Tests.ParallelTest_ThreadLocal" />
-		</classes>
-	</test> 
+<!-- 	<test thread-count="3" name="Parallel Test Using Firefox"> -->
+<!-- 		<parameter name="browser" value="firefox" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="Tests.ParallelTest_ThreadLocal" /> -->
+<!-- 		</classes> -->
+<!-- 	</test>  -->
 	
 </suite> <!-- Suite -->

@@ -17,6 +17,7 @@ public class Assertions {
 	public boolean stringAssertEquals(String strExpected, String strActual) {
 		try {
 			Assert.assertTrue(strExpected.equalsIgnoreCase(strActual.trim()));
+			screenshot.takeScreenshot();
 			return true;
 		} catch (AssertionError exception) {
 			screenshot.takeScreenshot();

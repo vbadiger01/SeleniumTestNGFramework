@@ -11,25 +11,51 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
+
 public class Screenshots {
 	WebDriver driver;
+	String fileSeperator = System.getProperty("file.separator");
+	boolean attachScreenShots = true;
+
 	public Screenshots(WebDriver driver) {
-		this.driver = driver;		
+		this.driver = driver;
 	}
-	
-	public void takeScreenshot() {
+
+	public String takeScreenshot() {
 		LoadConfigProperties getFrameworkConfig = new LoadConfigProperties();
+
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String fileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()) + "_scrShot.png";
+
+		File destFile = new File(getFrameworkConfig.getScreenshotDir() + fileName);
+		String targetLocation = System.getProperty("user.dir") + fileSeperator + getFrameworkConfig.getScreenshotDir()
+				+ fileSeperator + fileName;
 		
-		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-		File destFile = new File(getFrameworkConfig.getScreenshotDir()+dateFormat.format(new Date())+"_scrShot.png");
 		
 		try {
 			FileUtils.copyFile(scrFile, destFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}		
+
+		attachScrenshotToExtentReport(targetLocation);
+		return targetLocation;
+
+	}
+
+	public void attachScrenshotToExtentReport(String targetLocation) {
+
+		if (attachScreenShots) {
+			try {
+				ExtentTestManager.getTest().info("Screenshot Capture",
+						MediaEntityBuilder.createScreenCaptureFromPath(targetLocation).build());
+			} catch (IOException e) {
+				System.out.println("An exception occured while taking screenshot " + e.getCause());
+			}
 		}
+
 	}
 
 }
