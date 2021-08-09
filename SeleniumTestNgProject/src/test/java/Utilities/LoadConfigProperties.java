@@ -35,6 +35,10 @@ public class LoadConfigProperties {
 		return prop.getProperty("chromeDriver");
 	}
 	
+	public String getFirefoxDriverPath() {
+		return prop.getProperty("firefoxdriver");
+	}
+	
 	public String getTestData() {
 		return prop.getProperty("TestDataExcel");
 	}

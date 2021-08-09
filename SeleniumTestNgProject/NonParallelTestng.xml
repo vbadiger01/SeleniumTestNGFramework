@@ -5,10 +5,11 @@
 	<listeners>
 		<listener class-name="Utilities.TestListener" />
 	</listeners>
-
-	<test thread-count="5" name="Test Execution">
+	
+	<test thread-count="5" name="Test Using Chrome">
+		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="Tests.LoginTests" />
 		</classes>
-	</test> <!-- Test -->
+	</test> <!-- Test -->	
 </suite> <!-- Suite -->

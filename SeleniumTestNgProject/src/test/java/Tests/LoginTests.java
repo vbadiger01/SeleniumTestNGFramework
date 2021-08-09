@@ -2,15 +2,10 @@ package Tests;
 
 
 import org.testng.annotations.Test;
-
-import com.aventstack.extentreports.Status;
-
 import Base.TestBase;
-import Pages.HomePage_PageFactory;
-import Pages.LoginPage_ByPOM;
-import Pages.LoginPage_PageFactory;
-import Utilities.ExtentTestManager;
-
+import Pages_ByPOM.LoginPage_ByPOM;
+import Pages_ByPageFactory.HomePage_PageFactory;
+import Pages_ByPageFactory.LoginPage_PageFactory;
 
 public class LoginTests extends TestBase {
 
@@ -19,31 +14,33 @@ public class LoginTests extends TestBase {
 	HomePage_PageFactory homePage;
 
 	@Test
-	public void verifyFieldsPresent() {
-		System.out.println("Test - Fields Present. Data from Excel : " + dataMap.get("Username1"));
+	public void verifyFieldsOnLoginPage() {
+		driver.get(getConfigProp.getAUTUrl());
+		loginPagePOM = new LoginPage_ByPOM(driver);
+		loginPagePOM.elementsPresntOnLogin();
 	}
 
 	@Test
 	public void verifySuccessfulLogin() {
 		driver.get(getConfigProp.getAUTUrl());
 
-		loginPagePOM = new LoginPage_ByPOM(driver);
+		loginPagePOM = new LoginPage_ByPOM(driver);		
+//		Use below individualSteps or function
 //		loginPagePOM.enterUserName(dataMap.get("Username1"));
 //		loginPagePOM.enterPassword(dataMap.get("Password"));
-//		loginPagePOM.clickLogin(); OR AS BELOW.
-		
+//		loginPagePOM.clickLogin(); OR AS BELOW.		
 		System.out.println(dataMap.get("Password").toString());
-		loginPagePOM.loginValidUser(dataMap.get("Username1"), dataMap.get("Password"));
-		
-		
+		loginPagePOM.loginasUser(dataMap.get("Username1"), dataMap.get("Password"));
 		homePage = new HomePage_PageFactory(driver);
 		homePage.checkLogoutisDisplayed();
-
 	}
 
 	@Test
 	public void verifyUnsuccessfulLogin() {
-		System.out.println("Test - Unsuccessful Login");
+		driver.get(getConfigProp.getAUTUrl());
+		loginPagePOM = new LoginPage_ByPOM(driver);
+		loginPagePOM.loginasUser(dataMap.get("Username1"), dataMap.get("InvalidPassword"));
+		loginPagePOM.verifyErrorOnLogin();
 	}
 
 }

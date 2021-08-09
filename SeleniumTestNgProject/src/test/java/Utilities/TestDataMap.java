@@ -17,8 +17,7 @@ public class TestDataMap {
 	
 	public Map<String,String> createTestDataMap() {
 		
-		try {
-			System.out.println("Reading Excel");
+		try {			
 			InputStream input = new FileInputStream(getConfigProp.getTestData());
 			Workbook wbook = WorkbookFactory.create(input);
 			Sheet sheet = wbook.getSheet("TestData");

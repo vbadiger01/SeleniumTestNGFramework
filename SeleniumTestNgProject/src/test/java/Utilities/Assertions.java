@@ -21,6 +21,7 @@ public class Assertions {
 		} catch (AssertionError exception) {
 			screenshot.takeScreenshot();
 			System.out.println("Expected Value :" + strExpected + " do not match with Actual Value :" + strActual);
+			Assert.fail();
 		}
 		return false;
 	}
