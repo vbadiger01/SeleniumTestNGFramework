@@ -23,39 +23,41 @@ public class Screenshots {
 	}
 
 	public String takeScreenshot() {
-		LoadConfigProperties getFrameworkConfig = new LoadConfigProperties();
+		String targetLocation = captureScreenshot();
+		return targetLocation;
+	}
 
+	public String takeScreenshot(boolean attachToExtentReport) {
+		String targetLocation = captureScreenshot();
+		attachScrenshotToExtentReport(targetLocation);
+		return targetLocation;
+	}
+	
+	private String captureScreenshot() {		
+		LoadConfigProperties getFrameworkConfig = new LoadConfigProperties();
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String fileName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date()) + "_scrShot.png";
-
 		File destFile = new File(getFrameworkConfig.getScreenshotDir() + fileName);
 		String targetLocation = System.getProperty("user.dir") + fileSeperator + getFrameworkConfig.getScreenshotDir()
 				+ fileSeperator + fileName;
-		
-		
 		try {
 			FileUtils.copyFile(scrFile, destFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-
-		attachScrenshotToExtentReport(targetLocation);
 		return targetLocation;
-
 	}
+	
 
-	public void attachScrenshotToExtentReport(String targetLocation) {
+	private void attachScrenshotToExtentReport(String targetLocation) {
 
-		if (attachScreenShots) {
-			try {
-				ExtentTestManager.getTest().info("Screenshot Capture",
-						MediaEntityBuilder.createScreenCaptureFromPath(targetLocation).build());
-			} catch (IOException e) {
-				System.out.println("An exception occured while taking screenshot " + e.getCause());
-			}
+		try {
+			ExtentTestManager.getTest().info("Screenshot Capture",
+					MediaEntityBuilder.createScreenCaptureFromPath(targetLocation).build());
+		} catch (IOException e) {
+			System.out.println("An exception occured while taking screenshot " + e.getCause());
 		}
-
 	}
 
 }

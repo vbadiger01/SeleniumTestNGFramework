@@ -1,23 +1,23 @@
 package ParallelExecution_Pages;
 
-import java.sql.Timestamp;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.remote.SessionId;
 
 import Utilities.Assertions;
+import Utilities.ElementActions;
 import Utilities.LoadConfigProperties;
 import Utilities.ReportingAssist;
 import Utilities.ReportingAssist.ReportStatus;
+import Utilities.Screenshots;
 import Utilities.Verify;
 
 public class LoginPagePOM_Parallel {
 	WebDriver driver;
 	Verify verify;
 	Assertions assertion;
+	ElementActions elementActions;
+	Screenshots screenshot;
 	
 	protected LoadConfigProperties getConfigProp = new LoadConfigProperties();
 	
@@ -33,6 +33,8 @@ public class LoginPagePOM_Parallel {
 		this.driver = driver;		
 		verify = new Verify(driver);
 		assertion = new Assertions(driver);
+		elementActions = new ElementActions(driver);
+		screenshot = new Screenshots(driver);
 	}
 
 	// ********
@@ -73,10 +75,15 @@ public class LoginPagePOM_Parallel {
 	public void loginasUser(String userName, String password) {
 		driver.get(getConfigProp.getAUTUrl());
 
-		driver.findElement(txt_userName).sendKeys(userName);
+		//driver.findElement(txt_userName).sendKeys(userName);
+		
+		// *** We can use above statement or Element extension methods as below. ***		
+		elementActions.enterText(driver.findElement(txt_userName), userName);				
 		ReportingAssist.ExtentReportLogger(ReportStatus.Info, "User Name Entered");
 
-		driver.findElement(txt_password).sendKeys(password);
+		//driver.findElement(txt_password).sendKeys(password);
+		
+		elementActions.enterText(driver.findElement(txt_password), password);
 		ReportingAssist.ExtentReportLogger(ReportStatus.Info, "Password Entered");
 
 		driver.findElement(loginBtn).click();
@@ -114,6 +121,19 @@ public class LoginPagePOM_Parallel {
 
 		assertion.stringAssertEquals("Password is invalid", actualError);
 		ReportingAssist.ExtentReportLogger(ReportStatus.Info, "Verified Invalid Password Error");
+	}
+	
+	
+	public void searchGoogleText() throws InterruptedException {
+		driver.get("https://google.co.in");
+		Thread.sleep(5000);
+		elementActions.enterText(driver.findElement(By.name("q")), "3i Infotech Share price");
+		Thread.sleep(5000);
+		elementActions.enterText(driver.findElement(By.name("q")), "3i Infotech results");
+		Thread.sleep(5000);
+		screenshot.takeScreenshot(true);
+		
+		
 	}
 
 }

@@ -11,7 +11,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 import ParallelExecution_Pages.LoginPagePOM_Parallel;
-import Tests.LoginTests;
 import Utilities.Assertions;
 import Utilities.LoadConfigProperties;
 import Utilities.Screenshots;
@@ -22,10 +21,9 @@ public class ParallelExecution_Base {
 	
 	protected LoadConfigProperties getConfigProp = new LoadConfigProperties();
 	public TestDataMap testDataMap = new TestDataMap();
-	public LoginTests loginTest;
-	public Map<String, String> dataMap;
-	
+	public Map<String, String> dataMap;	
 	//protected RemoteWebDriver driver = null;
+	
 	protected InheritableThreadLocal<WebDriver> driver = new InheritableThreadLocal<WebDriver>();
 	protected InheritableThreadLocal<LoginPagePOM_Parallel> loginPagePOM = new InheritableThreadLocal<LoginPagePOM_Parallel>();
 	protected InheritableThreadLocal<Assertions> assertion = new InheritableThreadLocal<Assertions>();

@@ -17,10 +17,10 @@ public class Assertions {
 	public boolean stringAssertEquals(String strExpected, String strActual) {
 		try {
 			Assert.assertTrue(strExpected.equalsIgnoreCase(strActual.trim()));
-			screenshot.takeScreenshot();
+			screenshot.takeScreenshot(true);
 			return true;
 		} catch (AssertionError exception) {
-			screenshot.takeScreenshot();
+			screenshot.takeScreenshot(true);
 			System.out.println("Expected Value :" + strExpected + " do not match with Actual Value :" + strActual);
 			Assert.fail();
 		}
