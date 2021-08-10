@@ -7,25 +7,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
-import Tests.LoginTests;
 import Utilities.Assertions;
 import Utilities.LoadConfigProperties;
 import Utilities.Screenshots;
 import Utilities.TestDataMap;
 
-public class TestBase {
+public class SerialExecution_Base {
 	protected LoadConfigProperties getConfigProp = new LoadConfigProperties();
 	protected WebDriver driver = null;
 
 	public Assertions assertion;
 	public Screenshots screenshot;
 	public TestDataMap testDataMap = new TestDataMap();
-	public LoginTests loginTest;
 	public Map<String, String> dataMap;	
 
 	

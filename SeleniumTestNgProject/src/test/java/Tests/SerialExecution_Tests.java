@@ -2,12 +2,13 @@ package Tests;
 
 
 import org.testng.annotations.Test;
-import Base.TestBase;
+
+import Base.SerialExecution_Base;
 import Pages_ByPOM.LoginPage_ByPOM;
 import Pages_ByPageFactory.HomePage_PageFactory;
 import Pages_ByPageFactory.LoginPage_PageFactory;
 
-public class LoginTests extends TestBase {
+public class SerialExecution_Tests extends SerialExecution_Base {
 
 	LoginPage_ByPOM loginPagePOM;
 	LoginPage_PageFactory loginPagePF;
