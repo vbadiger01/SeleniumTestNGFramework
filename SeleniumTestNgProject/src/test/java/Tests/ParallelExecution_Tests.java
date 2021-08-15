@@ -12,6 +12,7 @@ public class ParallelExecution_Tests extends ParallelExecution_Base {
 	}
 
 	
+	
 	@Test
 	public void verifySuccessfulLogin() throws InterruptedException {
 		loginPagePOM.get().loginasUser(dataMap.get("Username1"), dataMap.get("Password"));		
