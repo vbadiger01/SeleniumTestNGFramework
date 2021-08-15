@@ -10,7 +10,7 @@
 	<test thread-count="5" name="Parallel Executions Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="Tests.ParallelExecution_MultiThread" />
+			<class name="Tests.ParallelExecution_Tests" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

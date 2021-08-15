@@ -29,7 +29,9 @@ public class Screenshots {
 
 	public String takeScreenshot(boolean attachToExtentReport) {
 		String targetLocation = captureScreenshot();
-		attachScrenshotToExtentReport(targetLocation);
+		if (attachToExtentReport) {
+			attachScrenshotToExtentReport(targetLocation);
+		}		
 		return targetLocation;
 	}
 	

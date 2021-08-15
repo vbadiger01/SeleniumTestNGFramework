@@ -3,6 +3,7 @@ package ParallelExecution_Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import Utilities.Assertions;
 import Utilities.ElementActions;
@@ -99,10 +100,19 @@ public class LoginPagePOM_Parallel {
 	}
 
 	public void verifyErrorOnLogin() {		
-		String actualError = driver.findElement(invalidCredError).getText().trim()+"_Invalid";
+		String actualError = driver.findElement(invalidCredError).getText().trim();
 		System.out.println("Actual Error Message - " + actualError);
-		assertion.stringAssertEquals("Password is invalid", actualError);
-		ReportingAssist.ExtentReportLogger(ReportStatus.Info, "Verified Invalid Password Error");
+		String expectedError = "Password is invalid";
+		assertion.stringAssertEquals(expectedError, actualError);		
+		
+		
+//		if(assertion.stringAssertEquals(expectedError, actualError)) {
+//			ReportingAssist.ExtentReportLogger(ReportStatus.Pass, "Messages displayed Match",expectedError,actualError);
+//		}
+//		else {
+//			ReportingAssist.ExtentReportLogger(ReportStatus.Fail, "Messages displayed do not Match",expectedError,actualError);
+//			Assert.fail();
+//		}
 	}
 
 	public void verifyInvalidLogin(String userName, String password) {
@@ -118,19 +128,22 @@ public class LoginPagePOM_Parallel {
 		String actualError = driver.findElement(invalidCredError).getText().trim();
 
 		System.out.println("Actual Error Message - " + actualError);
-
-		assertion.stringAssertEquals("Password is invalid", actualError);
-		ReportingAssist.ExtentReportLogger(ReportStatus.Info, "Verified Invalid Password Error");
+		String expectedError = "Password is invalid";
+		if(assertion.stringAssertEquals(expectedError, actualError)) {
+			ReportingAssist.ExtentReportLogger(ReportStatus.Pass, "Message displayed Match",expectedError,actualError);
+		}
+		else {
+			ReportingAssist.ExtentReportLogger(ReportStatus.Fail, "Message displayed do not Match",expectedError,actualError);
+			Assert.fail();
+		}		
 	}
-	
-	
+		
 	public void searchGoogleText() throws InterruptedException {
 		driver.get("https://google.co.in");
 		Thread.sleep(5000);
 		elementActions.enterText(driver.findElement(By.name("q")), "3i Infotech Share price");
 		Thread.sleep(5000);
-		elementActions.enterText(driver.findElement(By.name("q")), "3i Infotech results");
-		Thread.sleep(5000);
+		elementActions.enterText(driver.findElement(By.name("q")), "3i Infotech results");		
 		screenshot.takeScreenshot(true);
 		
 		
