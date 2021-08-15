@@ -97,6 +97,7 @@ public class LoginPagePOM_Parallel {
 		System.out.println("Actual Error Message - " + actualError);
 		assertion.stringAssertEquals("Password is invalid", actualError);
 		ReportingAssist.ExtentReportLogger(ReportStatus.Info, "Verified Invalid Password Error");
+		
 	}
 
 	public void verifyErrorOnLogin() {		
